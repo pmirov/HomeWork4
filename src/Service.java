@@ -21,7 +21,6 @@ public class Service {
         {
             list.add(Integer.parseInt(element));
         }
-        System.out.println(list);
         do {
             showMenu();
             action = scanner.nextLine();
@@ -43,6 +42,22 @@ public class Service {
     }
 
     private void changeValue() {
+        System.out.println("Введите значение, которое нужно заменить:");
+        int oldValue = scanner.nextInt();
+        System.out.println("Введите значение, на которое нужно заменить:");
+        int newValue = scanner.nextInt();
+        scanner.nextLine();
+        Iterator<Integer> arrIterator = list.iterator();
+        int count = 0;
+        while(arrIterator.hasNext())
+        {
+            Integer nextInt = arrIterator.next();
+            if(nextInt.equals(oldValue))
+            {
+                list.set(count,newValue);
+            }
+            count++;
+        }
 
     }
 
@@ -61,7 +76,6 @@ public class Service {
     private void deleteItem() {
         System.out.println("Удалите элемент: ");
         int delInt = scanner.nextInt();
-//        list.remove(Integer.parseInt(scanner.nextLine()));
         Iterator<Integer> arrIterator = list.iterator();
         while(arrIterator.hasNext())
         {
