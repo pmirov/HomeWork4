@@ -1,5 +1,6 @@
 import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -63,8 +64,19 @@ public class Service {
     }
 
     private void deleteItem() {
-        System.out.println("Удалите элемент, введите индекс элемента:");
-        list.remove(Integer.parseInt(scanner.nextLine()));
+        System.out.println("Удалите элемент: ");
+        int delInt = scanner.nextInt();
+//        list.remove(Integer.parseInt(scanner.nextLine()));
+        Iterator<Integer> arrIterator = list.iterator();
+        while(arrIterator.hasNext())
+        {
+            Integer nextInt = arrIterator.next();
+            if(nextInt.equals(delInt))
+            {
+                arrIterator.remove();
+            }
+        }
+
     }
 
     private void add() {
