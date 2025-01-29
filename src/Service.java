@@ -49,13 +49,8 @@ public class Service {
     private void checkValue() {
         System.out.println("Введите значение, которое нужно проверить:");
         int value = scanner.nextInt();
-        boolean chekValue = false;
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i) == value) {
-                chekValue = true;
-            }
-
-        }
+        scanner.nextLine();
+        boolean chekValue = list.contains(value);
         if (chekValue)
             System.out.println("Значение найдено!");
         else
