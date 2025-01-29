@@ -11,13 +11,7 @@ public class CommandMenu {
     {
         boolean exit =false;
         String action;
-//        System.out.println("Введите числа: ");
-//        String name = scanner.nextLine();
-//        String[] elements = name.split("\\s");
-//        for (String element : elements)
-//        {
-//            list.add(Integer.parseInt(element));
-//        }
+
         do {
             showMenu();
             action = scanner.nextLine();
@@ -54,7 +48,7 @@ public class CommandMenu {
     }
 
     private void addNewUser() {
-
+        map.put(1,"new user");
     }
 
     private void showMenu()
