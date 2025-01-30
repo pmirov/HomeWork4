@@ -5,7 +5,7 @@ import java.util.*;
 public class CommandMenu {
 
     private Scanner scanner = new Scanner(System.in);
-    private Map<Integer,String> map = new HashMap<>();
+    private Map<Integer,User> map = new HashMap<>();
 
     public void start()
     {
@@ -48,7 +48,14 @@ public class CommandMenu {
     }
 
     private void addNewUser() {
-        map.put(1,"new user");
+
+        System.out.println("Введите Login: ");
+        String login = scanner.nextLine();
+        System.out.println("Введите пароль; ");
+        String password = scanner.nextLine();
+        User user = new User(login, password);
+
+        map.put(1,user);
     }
 
     private void showMenu()
