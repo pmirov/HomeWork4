@@ -6,7 +6,7 @@ public class CommandMenu {
 
     private Scanner scanner = new Scanner(System.in);
     private Map<Integer,User> map = new HashMap<>();
-
+    private int count = 1;
     public void start()
     {
         boolean exit =false;
@@ -17,14 +17,18 @@ public class CommandMenu {
             action = scanner.nextLine();
             switch (action)
             {
-                case "1": addNewUser(); break;
+                case "1": {
+                    addNewUser();
+                    count++;
+                    break;
+                }
                 case "2": delOldUser(); break;
                 case "3": checkUser(); break;
                 case "4": changeLogin(); break;
                 case "5": changePassword(); break;
                 case "6": exit = true; break;
                 default:
-                    System.out.println("Введите число от 1 до 6 включительно!");
+                System.out.println("Введите число от 1 до 6 включительно!");
             }
         }
         while(!exit);
@@ -33,6 +37,7 @@ public class CommandMenu {
 
     private void changePassword() {
 
+
     }
 
     private void changeLogin() {
@@ -40,6 +45,9 @@ public class CommandMenu {
     }
 
     private void checkUser() {
+
+        System.out.println("Введите Ваш логин:");
+        System.out.println(map.get(count-1).getLogin());
 
     }
 
@@ -55,7 +63,7 @@ public class CommandMenu {
         String password = scanner.nextLine();
         User user = new User(login, password);
 
-        map.put(1,user);
+        map.put(count,user);
     }
 
     private void showMenu()
