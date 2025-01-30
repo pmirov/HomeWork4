@@ -5,8 +5,8 @@ import java.util.*;
 public class CommandMenu {
 
     private Scanner scanner = new Scanner(System.in);
-    private Map<Integer,User> map = new HashMap<>();
-    private int count = 1;
+    private Map<String,String> map = new HashMap<>();
+
     public void start()
     {
         boolean exit =false;
@@ -19,7 +19,7 @@ public class CommandMenu {
             {
                 case "1": {
                     addNewUser();
-                    count++;
+                    //count++;
                     break;
                 }
                 case "2": delOldUser(); break;
@@ -46,9 +46,17 @@ public class CommandMenu {
 
     private void checkUser() {
 
-        System.out.println("Введите Ваш логин:");
-        System.out.println(map.get(count-1).getLogin());
+       System.out.println("Введите логин для проверки: ");
+       String login = scanner.nextLine();
+       if (map.containsKey(login))
+       {
+           System.out.println("Логин существует");
+       }
+       else
+       {
+           System.out.println("Такого логина нет");
 
+       }
     }
 
     private void delOldUser() {
@@ -59,11 +67,17 @@ public class CommandMenu {
 
         System.out.println("Введите Login: ");
         String login = scanner.nextLine();
+        if (map.containsKey(login))
+        {
+            System.out.println("Пользователь с таким логином существует");
+            return;
+        }
         System.out.println("Введите пароль; ");
         String password = scanner.nextLine();
         User user = new User(login, password);
 
-        map.put(count,user);
+        map.put(user.getLogin(),user.getPassword());
+        System.out.println("Пользователь успешно добавлен");
     }
 
     private void showMenu()
