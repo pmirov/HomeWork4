@@ -17,11 +17,7 @@ public class CommandMenu {
             action = scanner.nextLine();
             switch (action)
             {
-                case "1": {
-                    addNewUser();
-                    //count++;
-                    break;
-                }
+                case "1": addNewUser(); break;
                 case "2": delOldUser(); break;
                 case "3": checkUser(); break;
                 case "4": changeLogin(); break;
@@ -61,6 +57,18 @@ public class CommandMenu {
 
     private void delOldUser() {
 
+        System.out.println("Введите Login пользователя, которого нужно удалеить: ");
+        String login = scanner.nextLine();
+        Iterator<Map.Entry<String,String>> entryIterator = map.entrySet().iterator();
+        while (entryIterator.hasNext())
+        {
+            Map.Entry<String,String> entry = entryIterator.next();
+            if (entry.getKey() == login)
+            {
+                entryIterator.remove();
+            }
+        }
+        System.out.printf("Пользователь %s успешно удален", login);
     }
 
     private void addNewUser() {
@@ -77,7 +85,7 @@ public class CommandMenu {
         User user = new User(login, password);
 
         map.put(user.getLogin(),user.getPassword());
-        System.out.println("Пользователь успешно добавлен");
+        System.out.println("Пользователь успешно добавлен\n");
     }
 
     private void showMenu()
