@@ -33,7 +33,12 @@ public class CommandMenu {
     }
 
     private void changePassword() {
-
+        System.out.println("Введите Login пользователя, у которого нужно поменять пароль: ");
+        String login = scanner.nextLine();
+        System.out.println("Введите новый пароль: ");
+        String newPassword = scanner.nextLine();
+        map.put(login,newPassword);
+        System.out.printf("Пароль пользователя %s успешно изменен \n", login);
 
     }
 
