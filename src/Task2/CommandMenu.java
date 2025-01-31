@@ -13,12 +13,11 @@ public class CommandMenu {
         String action;
 
         do {
-            System.out.println(map.entrySet());
             showMenu();
             action = scanner.nextLine();
             switch (action)
             {
-                case "1": addNewUser(); break;
+                case "1": addNewUser();  break;
                 case "2": delOldUser(); break;
                 case "3": checkUser(); break;
                 case "4": changeLogin(); break;
@@ -35,6 +34,10 @@ public class CommandMenu {
     private void changePassword() {
         System.out.println("Введите Login пользователя, у которого нужно поменять пароль: ");
         String login = scanner.nextLine();
+        if (!map.containsKey(login)) {
+            System.out.println("Пользователь с таким логином не существует.");
+            return;
+        }
         System.out.println("Введите новый пароль: ");
         String newPassword = scanner.nextLine();
         map.put(login,newPassword);
@@ -46,8 +49,18 @@ public class CommandMenu {
 
         System.out.println("Введите Login пользователя, который нужно поменять: ");
         String login = scanner.nextLine();
+        if (!map.containsKey(login)) {
+            System.out.println("Пользователь с таким логином не существует.");
+            return;
+        }
+
         System.out.println("Введите новый  Login пользователя: ");
         String newLogin = scanner.nextLine();
+
+        if (map.containsKey(newLogin)) {
+            System.out.println("Пользователь с таким логином уже существует.");
+            return;
+        }
         String password = map.get(login);
         map.remove(login);
         map.put(newLogin,password);
@@ -73,6 +86,10 @@ public class CommandMenu {
 
         System.out.println("Введите Login пользователя, которого нужно удалить: ");
         String login = scanner.nextLine();
+        if (!map.containsKey(login)) {
+            System.out.println("Пользователь с таким логином не существует.");
+            return;
+        }
         Iterator<Map.Entry<String,String>> entryIterator = map.entrySet().iterator();
         while (entryIterator.hasNext())
         {
@@ -89,6 +106,7 @@ public class CommandMenu {
 
         System.out.println("Введите Login: ");
         String login = scanner.nextLine();
+
         if (map.containsKey(login))
         {
             System.out.println("Пользователь с таким логином существует");
