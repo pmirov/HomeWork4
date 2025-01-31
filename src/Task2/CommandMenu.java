@@ -13,6 +13,7 @@ public class CommandMenu {
         String action;
 
         do {
+            System.out.println(map.entrySet());
             showMenu();
             action = scanner.nextLine();
             switch (action)
@@ -38,6 +39,14 @@ public class CommandMenu {
 
     private void changeLogin() {
 
+        System.out.println("Введите Login пользователя, который нужно поменять: ");
+        String login = scanner.nextLine();
+        System.out.println("Введите новый  Login пользователя: ");
+        String newLogin = scanner.nextLine();
+        String password = map.get(login);
+        map.remove(login);
+        map.put(newLogin,password);
+        System.out.printf("Login пользователя %s успешно изменен \n", login);
     }
 
     private void checkUser() {
@@ -57,13 +66,13 @@ public class CommandMenu {
 
     private void delOldUser() {
 
-        System.out.println("Введите Login пользователя, которого нужно удалеить: ");
+        System.out.println("Введите Login пользователя, которого нужно удалить: ");
         String login = scanner.nextLine();
         Iterator<Map.Entry<String,String>> entryIterator = map.entrySet().iterator();
         while (entryIterator.hasNext())
         {
             Map.Entry<String,String> entry = entryIterator.next();
-            if (entry.getKey() == login)
+            if (entry.getKey().equals(login))
             {
                 entryIterator.remove();
             }
